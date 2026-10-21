@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Explorer B – C1 My neighbourhood</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#1e2340;--mut:#5b6286;--pri:#d9363e;--navy:#232350;--ok:#1f9d6b;--bad:#d9363e;--line:#dfe2ee;--soft:#eef0f8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14162b;--card:#1d2040;--ink:#eceefb;--mut:#a4abd0;--navy:#0e1030;--line:#33376a;--soft:#262a52}}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
+header{background:var(--navy);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700}
+header span{opacity:.75;font-weight:500;font-size:14px}
+main{flex:1;overflow:auto;padding:18px}
+.slide{display:none;max-width:900px;margin:0 auto}.slide.on{display:block}
+h1{font-size:clamp(28px,6vw,46px);margin:.2em 0}h2{margin:0 0 6px;font-size:clamp(20px,4vw,28px)}
+.tag{display:inline-block;background:var(--pri);color:#fff;border-radius:8px;padding:3px 10px;font-weight:700;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.hint{color:var(--mut);font-size:14px}
+button,select{font:inherit;color:var(--ink)}
+button{border:0;border-radius:10px;padding:9px 14px;background:var(--pri);color:#fff;font-weight:600;cursor:pointer}
+button.alt{background:var(--soft);color:var(--ink)}
+select{background:var(--card);border:1.5px solid var(--line);border-radius:8px;padding:5px 6px;max-width:100%}
+select.ok{border-color:var(--ok);background:rgba(31,157,107,.15)}select.bad{border-color:var(--bad);background:rgba(217,54,62,.12)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt{background:var(--soft);color:var(--ink);border:2px solid transparent}
+.opt.ok{border-color:var(--ok);background:rgba(31,157,107,.2)}.opt.bad{border-color:var(--bad);background:rgba(217,54,62,.15)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.pic{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px}
+.pic b{background:var(--pri);color:#fff;border-radius:6px;width:24px;text-align:center}.pic i{font-style:normal;font-size:34px}
+.say{border-left:4px solid var(--pri);padding:4px 10px;margin:6px 0}
+.ans{display:none;margin-top:8px;color:var(--ok);font-weight:600}.ans.show{display:block}
+.fb{margin-top:6px;font-size:14px;min-height:1.2em}
+nav{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;background:var(--card);border-top:1px solid var(--line)}
+p.t{line-height:2.1}
+</style>
+</head>
+<body>
+<header>Explorer B · Unit C · Lesson 1 <span id="pg"></span></header>
+<main>
+
+<section class="slide on">
+<span class="tag">C1</span><h1>My neighbourhood</h1>
+<h2>Language introduction</h2>
+<div class="card"><b>Learning aim:</b> to learn vocabulary related to places in the neighbourhood.</div>
+<p class="hint">Gunakan tombol ← → atau tombol di bawah untuk pindah slide.</p>
+</section>
+
+<section class="slide">
+<span class="tag">1</span><h2>Lead-in</h2>
+<div class="card"><p>Look at the picture of the street and answer:</p>
+<p>A. What can you see in the picture?</p>
+<p>B. How would you describe your neighbourhood? Do you like it?</p>
+<p>C. What is your favourite thing about your neighbourhood?</p></div>
+<p class="hint">Jawaban bebas. Ajak siswa menebak: apa yang akan dipelajari di unit ini?</p>
+</section>
+
+<section class="slide">
+<span class="tag">2</span><h2>Listen: Lucas and Maya’s neighbourhood</h2>
+<p>What is the conversation about? Which places do they mention?</p>
+<div class="card" id="dlg"></div>
+<div class="opts"><button id="playAll">▶ Play conversation</button><button class="alt" id="stopAll">■ Stop</button><button class="alt" data-reveal="a2">Show answer</button></div>
+<div class="ans" id="a2">Maya welcomes Lucas to the neighbourhood and introduces places he can visit: park, zoo, supermarket, petrol station, bookstore, hospital, cafe, hotel, museum, and school.</div>
+<p class="hint">Audio dibacakan oleh suara browser. Jika tidak terdengar, putar audio asli dari English Academy. Teks percakapan bisa disembunyikan: <button class="alt" id="tg">Hide / show text</button></p>
+</section>
+
+<section class="slide">
+<span class="tag">3</span><h2>Listen again: choose the best answer</h2>
+<div id="mcq"></div>
+<div class="card"><b>Score:</b> <span id="sc">0</span> / 5</div>
+</section>
+
+<section class="slide">
+<span class="tag">4</span><h2>Match the pictures to the words</h2>
+<div class="grid" id="match"></div>
+<div class="opts"><button id="chk4">Check</button><button class="alt" id="shw4">Show answers</button><button class="alt" id="rst4">Reset</button></div>
+<div class="fb" id="fb4"></div>
+</section>
+
+<section class="slide">
+<span class="tag">5</span><h2>Fill the gaps</h2>
+<div class="card" id="gap"></div>
+<div class="opts"><button id="chk5">Check</button><button class="alt" id="shw5">Show answers</button><button class="alt" id="rst5">Reset</button></div>
+<div class="fb" id="fb5"></div>
+</section>
+
+<section class="slide">
+<span class="tag">6</span><h2>Read and choose the correct words</h2>
+<div class="card"><p class="t" id="circ"></p></div>
+<div class="opts"><button id="chk6">Check</button><button class="alt" id="shw6">Show answers</button><button class="alt" id="rst6">Reset</button></div>
+<div class="fb" id="fb6"></div>
+</section>
+
+<section class="slide">
+<span class="tag">7</span><h2>True or False?</h2>
+<p class="hint">Based on the text in slide 6.</p>
+<div id="tf"></div>
+</section>
+
+<section class="slide">
+<span class="tag">8</span><h2>Pair work</h2>
+<div class="card">
+<div class="say"><b>A:</b> Hi! Where do you live?</div>
+<div class="say"><b>B:</b> I live at Pandanaran street.</div>
+<div class="say"><b>A:</b> What is the neighbourhood like? Do you have a favourite place in your neighbourhood?</div></div>
+<p>Make a conversation with your partner about your neighbourhood. Use the new words, then act it out in front of the class.</p>
+<div class="opts" id="wb"></div>
+</section>
+
+</main>
+<nav><button class="alt" id="pv">← Back</button><span id="dots" class="hint"></span><button id="nx">Next →</button></nav>
+
+<script>
+var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
+var S=$$('.slide'),i=0;
+function go(n){i=Math.max(0,Math.min(S.length-1,n));S.forEach(function(s,k){s.classList.toggle('on',k===i)});$('#pg').textContent=(i+1)+' / '+S.length;$('#pv').style.visibility=i?'visible':'hidden';$('#nx').style.visibility=i<S.length-1?'visible':'hidden';$('main').scrollTop=0}
+$('#pv').onclick=function(){go(i-1)};$('#nx').onclick=function(){go(i+1)};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(i+1);if(e.key==='ArrowLeft')go(i-1)});
+$$('[data-reveal]').forEach(function(b){b.onclick=function(){$('#'+b.dataset.reveal).classList.toggle('show')}});
+
+/* slide 2 dialogue */
+var D=[["Maya","Hi, Lucas. Welcome to the neighbourhood! Have you looked around?"],["Lucas","Hi, Maya. Yes, I have visited the park and zoo near my new house. Are there any places I should visit?"],["Maya","Yes, there is a supermarket near the park, I often go there for grocery shopping. There is also a petrol station on the corner of the street. It’s really handy when I need to fill up my car."],["Lucas","Is there a bookstore nearby? I love spending time at a bookstore to find new books."],["Maya","Yes, it’s just a short walk from the supermarket. They have a varied collection of books. We should go there together."],["Lucas","I would like that very much, Maya. What about other places?"],["Maya","Hmm, the hospital on Elm Street is essential. It’s reassuring to have it close by in case of emergencies. And when I’m in the mood for a good cup of coffee, I like to stop by the cafe across from the hotel. They have the best pastries ever!"],["Lucas","Oh, I have been craving pastries since last week. I will definitely visit it tomorrow."],["Maya","Also, there’s a museum near our school. It’s a fantastic place to learn about our town’s history."],["Lucas","Wow! This neighbourhood has everything we need. It’s such a great place to live."]];
+$('#dlg').innerHTML=D.map(function(l){return '<div class="say"><b>'+l[0]+':</b> '+l[1]+'</div>'}).join('');
+var stop=false;
+function speak(k){if(stop||k>=D.length)return;try{var u=new SpeechSynthesisUtterance(D[k][1]);u.lang='en-GB';u.pitch=D[k][0]==='Maya'?1.3:0.8;u.onend=function(){speak(k+1)};speechSynthesis.speak(u)}catch(e){}}
+$('#playAll').onclick=function(){try{speechSynthesis.cancel()}catch(e){}stop=false;speak(0)};
+$('#stopAll').onclick=function(){stop=true;try{speechSynthesis.cancel()}catch(e){}};
+$('#tg').onclick=function(){var d=$('#dlg');d.style.display=d.style.display==='none'?'block':'none'};
+
+/* slide 3 MCQ */
+var Q=[["Who welcomed Lucas to the neighbourhood?",["His neighbour","Maya","His classmate"],1],["Where does Maya go for grocery shopping?",["Petrol station","Bookstore","Supermarket"],2],["What kind of place does Lucas enjoy visiting?",["Bookstore","Cafe","Park"],0],["What is located on the corner of the street, as Maya mentioned?",["Petrol station","Hospital","Museum"],0],["Where is the location of the hospital?",["Near Maya’s house","On Elm Street","On the corner of the street"],1]];
+var done={};
+$('#mcq').innerHTML=Q.map(function(q,n){return '<div class="card"><b>'+(n+1)+'. '+q[0]+'</b><div class="opts">'+q[1].map(function(o,k){return '<button class="opt" data-q="'+n+'" data-k="'+k+'">'+'ABC'[k]+'. '+o+'</button>'}).join('')+'</div></div>'}).join('');
+$$('.opt[data-q]').forEach(function(b){b.onclick=function(){var n=+b.dataset.q,k=+b.dataset.k;if(done[n]!==undefined)return;var ok=k===Q[n][2];done[n]=ok;b.classList.add(ok?'ok':'bad');if(!ok)$$('.opt[data-q="'+n+'"]')[Q[n][2]].classList.add('ok');$('#sc').textContent=Object.keys(done).filter(function(x){return done[x]}).length}})});
+
+/* helpers for select exercises */
+var W=["park","zoo","supermarket","petrol station","bookstore","hospital","cafe","hotel","museum","school"];
+function sel(ans,opts){return '<select data-a="'+ans+'"><option value="">…</option>'+opts.map(function(o){return '<option>'+o+'</option>'}).join('')+'</select>'}
+function wire(c,chk,shw,rst,fb,scope){
+ var q=function(){return $$(scope+' select')};
+ $(chk).onclick=function(){var r=0,t=0;q().forEach(function(s){t++;var ok=s.value===s.dataset.a;if(ok)r++;s.className=s.value?(ok?'ok':'bad'):''});$(fb).textContent='Score: '+r+' / '+t+(r===t?' 🎉':'')};
+ $(shw).onclick=function(){q().forEach(function(s){s.value=s.dataset.a;s.className='ok'})};
+ $(rst).onclick=function(){q().forEach(function(s){s.value='';s.className=''});$(fb).textContent=''};
+}
+/* slide 4 matching */
+var P=[["🏥","hospital"],["🦒","zoo"],["🌳","park"],["🛒","supermarket"],["🏫","school"],["🏨","hotel"],["🏛️","museum"],["☕","cafe"],["⛽","petrol station"],["📚","bookstore"]];
+$('#match').innerHTML=P.map(function(p,n){return '<div class="pic"><b>'+(n+1)+'</b><i>'+p[0]+'</i>'+sel(p[1],W)+'</div>'}).join('');
+wire('#chk4','#shw4','#rst4','#fb4','#match');
+/* slide 5 gaps */
+var G=[["Grandma and I had tea and cookies at the "," .","cafe"],["If you feel sick, we go to the "," to see a doctor.","hospital"],["The "," has old artifacts and paintings.","museum"],["I love to read, so I often visit the "," .","bookstore"],["My mum went to the "," to buy vegetables.","supermarket"],["Uncle Timothy stopped at the "," to get some petrol.","petrol station"]];
+$('#gap').innerHTML=G.map(function(g,n){return '<p>'+'abcdef'[n]+'. '+g[0]+sel(g[2],W)+g[1]+'</p>'}).join('');
+wire('#chk5','#shw5','#rst5','#fb5','#gap');
+/* slide 6 circling */
+var T="My neighbourhood is a delightful place with many attractions and conveniences. Just down the street, there’s a beautiful {park|cafe} where I often go to play with my friends and have picnics. Right next to it, there’s a {zoo|museum} filled with fascinating animals from around the world, and I love going there to see the lions, elephants, and penguins. For everyday needs, there’s a {supermarket|hotel} nearby where my family shops for groceries, and there’s a friendly {petrol station|bookstore} where our car gets filled up. If I’m in the mood for a good read, the {bookstore|school} is just a short walk away. In case of any emergencies, the {hospital|park} is close by to take care of us. For a relaxing afternoon, I enjoy going to the cosy {cafe|hotel} on the corner, sipping hot chocolate, and chatting with friends. If we have visitors from out of town, they can stay at the welcoming {hotel|park} right on our street. And when I want to explore and learn something new, I head to the {museum|school}, which always has exciting exhibits to discover. Of course, during the week, I attend {school|hospital} to learn and make new friends. My neighbourhood truly has everything I could ever need or want!";
+var CA=["park","zoo","supermarket","petrol station","bookstore","hospital","cafe","hotel","museum","school"],ci=0;
+$('#circ').innerHTML=T.replace(/\{([^|]+)\|([^}]+)\}/g,function(m,a,b){var s=sel(CA[ci],[a,b]);return '<b>('+'abcdefghij'[ci++]+')</b> '+s});
+wire('#chk6','#shw6','#rst6','#fb6','#circ');
+/* slide 7 true/false */
+var F=[["The park is far away from the neighbourhood.",false,"The text mentions a park where the writer plays and has picnics, just down the street."],["The hospital is where you go for everyday needs.",false,"The hospital is mentioned for emergencies, not everyday needs."],["School is a place to make new friends.",true,"“…I attend school to learn and make new friends.”"],["The writer’s neighbourhood has a library.",false,"The writer only mentions going to the bookstore for a good read."],["The museum is where people learn history.",true,"The museum has exciting exhibits to discover and learn something new."]];
+$('#tf').innerHTML=F.map(function(f,n){return '<div class="card"><b>'+'ABCDE'[n]+'. '+f[0]+'</b><div class="opts"><button class="opt" data-t="'+n+'" data-v="1">True</button><button class="opt" data-t="'+n+'" data-v="0">False</button></div><div class="ans" id="e'+n+'">'+f[2]+'</div></div>'}).join('');
+$$('.opt[data-t]').forEach(function(b){b.onclick=function(){var n=+b.dataset.t,ok=(b.dataset.v==='1')===F[n][1];$$('.opt[data-t="'+n+'"]').forEach(function(x){x.classList.remove('ok','bad')});b.classList.add(ok?'ok':'bad');$('#e'+n).classList.add('show');$('#e'+n).textContent=(ok?'✔ ':'✘ ')+(F[n][1]?'True. ':'False. ')+F[n][2]}})});
+/* slide 8 word bank */
+$('#wb').innerHTML=W.map(function(w){return '<button class="alt">'+w+'</button>'}).join('');
+go(0);
+</script>
+</body>
+</html>
